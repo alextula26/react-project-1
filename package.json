@@ -1,6 +1,7 @@
 {
-  "name": "react-project",
+  "name": "Social network",
   "version": "0.1.0",
+  "description": "Social network app on React",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -16,6 +17,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "author": "alextula26",
+  "license": "ISC",
   "eslintConfig": {
     "extends": "react-app"
   },
