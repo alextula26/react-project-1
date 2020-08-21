@@ -2,7 +2,8 @@ import React from 'react';
 import style from './Posts.module.css';
 import Post from './Post/Post.jsx';
 
-const Posts = (props) => {
+const Posts = ({ users }) => {
+    const posts = users.map(({ name, age, message, like }) => <Post name={ name } age={ age } message={ message } like={ like } />);
     return (
         <div>
             My posts
@@ -11,8 +12,7 @@ const Posts = (props) => {
                 <button>Add post</button>
             </div>
             <div className={ style.posts }>
-                <Post name={ props.users[0]['name'] } age={ props.users[0]['age'] } message={ props.users[0]['message'] } like={ props.users[0]['like'] } />
-                <Post name={ props.users[1]['name'] } age={ props.users[1]['age'] } message={ props.users[1]['message'] } like={ props.users[1]['like'] } />
+                { posts }
              </div>
         </div>
     )
