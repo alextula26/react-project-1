@@ -2,22 +2,20 @@ import React from 'react';
 import style from './Posts.module.css';
 import Post from './Post/Post.jsx';
 
-const Posts = () => (
-    <div>
-        My posts
+const Posts = (props) => {
+    return (
         <div>
-            <textarea></textarea>
-            <button>Add post</button>
+            My posts
+            <div>
+                <textarea/>
+                <button>Add post</button>
+            </div>
+            <div className={ style.posts }>
+                <Post name={ props.users[0]['name'] } age={ props.users[0]['age'] } message={ props.users[0]['message'] } like={ props.users[0]['like'] } />
+                <Post name={ props.users[1]['name'] } age={ props.users[1]['age'] } message={ props.users[1]['message'] } like={ props.users[1]['like'] } />
+             </div>
         </div>
-        <div className={style.posts}>
-            <Post/>
-            <Post/>
-            <Post/>
-            <Post/>
-            <Post/>
-            <Post/>
-        </div>
-    </div>
-);
+    )
+};
 
 export default Posts;

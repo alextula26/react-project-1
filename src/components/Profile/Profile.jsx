@@ -2,6 +2,11 @@ import React from 'react';
 import style from './Profile.module.css';
 import Posts from './Posts/Posts.jsx';
 
+const users = [
+    { name: 'Alex', age: 30, message: 'How do you do?', like: 20 },
+    { name: 'Inna', age: 35, message: 'Cool!!!', like: 30 },
+];
+
 const Profile = () => (
     <div className={style.content}>
         <div>
@@ -12,7 +17,7 @@ const Profile = () => (
         <div>
             ava + description
         </div>
-        <Posts />
+        <Posts users={ users } />
     </div>
 );
 
