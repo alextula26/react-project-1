@@ -5,11 +5,13 @@ import Post from './Post/Post.jsx';
 const Posts = ({users}) => {
   const posts = users.map(({name, age, message, like}) => <Post name={name} age={age} message={message} like={like}/>);
   return (
-    <div>
+    <div className={style.profilePosts}>
       My posts
-      <div>
-        <textarea/>
-        <button>Add post</button>
+      <div className={style.postForm}>
+        <div><textarea/></div>
+        <div>
+          <button>Add post</button>
+        </div>
       </div>
       <div className={style.posts}>
         {posts}

@@ -1,5 +1,7 @@
 import React from 'react';
+import style from './Profile.module.css';
 import Posts from './Posts/Posts.jsx';
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
 const users = [
   {name: 'Alex', age: 30, message: 'How do you do?', like: 20},
@@ -8,15 +10,8 @@ const users = [
 
 const Profile = () => {
   return (
-    <div>
-      <div>
-        <img
-          src='https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&h=350'
-          alt=""/>
-      </div>
-      <div>
-      ava + description
-      </div>
+    <div className={style.profile}>
+      <ProfileInfo />
       <Posts users={users}/>
     </div>
   )
