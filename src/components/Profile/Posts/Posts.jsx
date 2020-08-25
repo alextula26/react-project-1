@@ -2,8 +2,8 @@ import React from 'react';
 import style from './Posts.module.css';
 import Post from './Post/Post.jsx';
 
-const Posts = ({users}) => {
-  const posts = users.map(({name, age, message, like}) => <Post name={name} age={age} message={message} like={like}/>);
+const Posts = ({ posts }) => {
+  const postsList = posts.map(({name, age, message, like}) => <Post name={name} age={age} message={message} like={like}/>);
   return (
     <div className={style.profilePosts}>
       My posts
@@ -14,7 +14,7 @@ const Posts = ({users}) => {
         </div>
       </div>
       <div className={style.posts}>
-        {posts}
+        {postsList}
       </div>
     </div>
   )
