@@ -13,8 +13,8 @@ function App({ state }) {
         <Header/>
         <Navbar/>
         <div className="content">
-          <Route path='/dialogs' render={ () => <Dialogs dialogs={state.dialogs} /> }/>
-          <Route path='/profile' render={ () => <Profile profile={state.profile} /> }/>
+          <Route path='/dialogs' render={ () => <Dialogs dialogs={state.dialogs} messages={state.messages} /> }/>
+          <Route path='/profile' render={ () => <Profile posts={state.posts} /> }/>
         </div>
       </div>
     </BrowserRouter>

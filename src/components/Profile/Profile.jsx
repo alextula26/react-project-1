@@ -3,11 +3,11 @@ import style from './Profile.module.css';
 import Posts from './Posts/Posts.jsx';
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
-const Profile = ({ profile }) => {
+const Profile = ({ posts }) => {
   return (
     <div className={style.profile}>
       <ProfileInfo />
-      <Posts posts={profile.posts}/>
+      <Posts posts={posts}/>
     </div>
   )
 };
