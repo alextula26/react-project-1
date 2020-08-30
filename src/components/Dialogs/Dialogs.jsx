@@ -3,9 +3,20 @@ import style from './Dialogs.module.css';
 import Dialog from "./Dialog/Dialog";
 import Message from "./Message/Message";
 
-const Dialogs = ({ dialogs, messages }) => {
-  const dialogsList = dialogs.map(({id, name}) => <Dialog id={id} name={name}/>);
-  const messagesList = messages.map(({id, text}) => <Message id={id} text={text}/>);
+const getDialogsList = (dialogs) => dialogs.map(({id, name}) => (
+    <Dialog key={id} id={id} name={name}/>
+  )
+);
+
+const getMessagesList = (messages) => messages.map(({id, text}) => (
+    <Message key={id} id={id} text={text}/>
+  )
+);
+
+const Dialogs = ({dialogs, messages}) => {
+  const dialogsList = getDialogsList(dialogs);
+  const messagesList = getMessagesList(messages);
+
   return (
     <div className={style.dialogs}>
       <div className={style.dialogsItems}>

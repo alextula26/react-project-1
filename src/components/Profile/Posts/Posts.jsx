@@ -2,24 +2,31 @@ import React from 'react';
 import style from './Posts.module.css';
 import Post from './Post/Post.jsx';
 
-const Posts = ({ posts }) => {
+const getPostsList = (posts) => posts.map(({id, name, age, message, like}) => (
+    <Post key={id} name={name} age={age} message={message} like={like}/>
+  )
+);
 
-  const inputPost = React.createRef();
-  const textPost = React.createRef();
+const Posts = ({posts, addPost}) => {
 
-  const addPost = () => {
-    alert(textPost.current.value + ' ' + inputPost.current.value);
+  const name = React.createRef();
+  const age = React.createRef();
+  const message = React.createRef();
+
+  const setPost = () => {
+    addPost(name.current.value, age.current.value, message.current.value);
   };
 
-  const postsList = posts.map(({name, age, message, like}) => <Post name={name} age={age} message={message} like={like}/>);
+  const postsList = getPostsList(posts);
   return (
     <div className={style.profilePosts}>
       My posts
       <div className={style.postForm}>
-        <div><input type="text" ref={inputPost} /></div>
-        <div><textarea ref={textPost} /></div>
+        <div><input type="text" ref={name}/></div>
+        <div><input type="text" ref={age}/></div>
+        <div><textarea ref={message}/></div>
         <div>
-          <button onClick={addPost}>Add post</button>
+          <button onClick={setPost}>Add post</button>
         </div>
       </div>
       <div className={style.posts}>
