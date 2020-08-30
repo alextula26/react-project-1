@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import render from "./render";
 
 export const addPost = (name, age, message) => {
 
@@ -14,6 +15,8 @@ export const addPost = (name, age, message) => {
   };
 
   state.posts.push(data);
+
+  render(state);
 };
 
 const state = {
