@@ -1,5 +1,6 @@
 import _ from 'lodash';
-import render from "./render";
+
+let render = () => {};
 
 export const addPost = () => {
 
@@ -30,6 +31,10 @@ export const updateChangePost = (name, age, message) => {
   state.profile.postForm.message = message;
 
   render(state);
+};
+
+export const subscribe = (observer) => {
+  render = observer;
 };
 
 const state = {

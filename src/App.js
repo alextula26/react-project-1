@@ -6,7 +6,7 @@ import Profile from './components/Profile/Profile.jsx';
 import Dialogs from './components/Dialogs/Dialogs.jsx';
 import {BrowserRouter, Route} from "react-router-dom";
 
-function App({ state, addPost, updateChangePost }) {
+const App = ({ state, addPost, updateChangePost }) => {
   return (
     <BrowserRouter>
       <div className="app-wrapper">
@@ -19,6 +19,6 @@ function App({ state, addPost, updateChangePost }) {
       </div>
     </BrowserRouter>
   );
-}
+};
 
 export default App;
