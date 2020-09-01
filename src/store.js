@@ -26,14 +26,18 @@ const store = {
       },
     },
   },
+  _callObserver() {
+  },
 
   getState() {
     return this._state;
   },
+  subscribe(observer) {
+    this._callObserver = observer;
+  },
 
-  _callObserver() {},
 
-  addPost() {
+  _addPost() {
     const ids = _.map(this._state.posts, (item) => item.id);
     const id = _.last(ids) + 1;
 
@@ -54,7 +58,7 @@ const store = {
     this._callObserver(this._state);
   },
 
-  updateChangePost (name, age, message) {
+  _updateChangePost(name, age, message) {
 
     this._state.profile.postForm.name = name;
     this._state.profile.postForm.age = age;
@@ -63,8 +67,17 @@ const store = {
     this._callObserver(this._state);
   },
 
-  subscribe (observer) {
-    this._callObserver = observer;
+  dispatch(action) {
+    switch (action.type) {
+      case 'ADD-POST':
+        this._addPost();
+        break;
+      case 'UPDATE-CHANGE-POST':
+        this._updateChangePost(action.name, action.age, action.message);
+        break;
+      default:
+        break;
+    }
   }
 };
 

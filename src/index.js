@@ -11,8 +11,7 @@ const render = (state) => {
       <App
         key="app"
         state={state}
-        addPost={store.addPost.bind(store)}
-        updateChangePost={store.updateChangePost.bind(store)}/>
+        dispatch={store.dispatch.bind(store)}/>
     </React.StrictMode>,
     document.getElementById('root')
   );
