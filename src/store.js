@@ -1,5 +1,13 @@
 import _ from 'lodash';
 
+const ADD_POST = 'ADD-POST';
+const UPDATE_CHANGE_POST = 'UPDATE-CHANGE-POST';
+
+export const addPostCreator = () => ({ type: ADD_POST });
+export const updateChangePostCreator = (name, age, message) => (
+  { type: UPDATE_CHANGE_POST, name, age, message }
+);
+
 const store = {
   _state: {
     dialogs: [
@@ -70,11 +78,11 @@ const store = {
   dispatch(action) {
     const propertyAction = [
       {
-        type: 'ADD-POST',
+        type: ADD_POST,
         fn: () => this._addPost(),
       },
       {
-        type: 'UPDATE-CHANGE-POST',
+        type: UPDATE_CHANGE_POST,
         fn: () => this._updateChangePost(action.name, action.age, action.message),
       }
     ];

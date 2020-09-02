@@ -1,6 +1,7 @@
 import React from 'react';
 import style from './Posts.module.css';
 import Post from './Post/Post.jsx';
+import {addPostCreator, updateChangePostCreator} from "../../../store";
 
 const getPostsList = (posts) => posts.map(({id, name, age, message, like}) => (
     <Post key={id} name={name} age={age} message={message} like={like}/>
@@ -8,33 +9,21 @@ const getPostsList = (posts) => posts.map(({id, name, age, message, like}) => (
 );
 
 const Posts = ({posts, postForm, dispatch}) => {
-
   const name = React.createRef();
   const age = React.createRef();
   const message = React.createRef();
 
   const setPost = () => {
-    dispatch({ type: 'ADD-POST' });
-    const param = {
-      type: 'UPDATE-CHANGE-POST',
-      name: '',
-      age: '',
-      message: '',
-    };
-    dispatch(param);
+    dispatch(addPostCreator());
+    dispatch(updateChangePostCreator('', '', ''));
   };
 
   const onChangePost = () => {
-    const param = {
-      type: 'UPDATE-CHANGE-POST',
-      name: name.current.value,
-      age: age.current.value,
-      message: message.current.value,
-    };
-    dispatch(param);
+    dispatch(updateChangePostCreator(name.current.value, age.current.value, message.current.value));
   };
 
   const postsList = getPostsList(posts);
+
   return (
     <div className={style.profilePosts}>
       My posts
