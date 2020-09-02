@@ -68,16 +68,19 @@ const store = {
   },
 
   dispatch(action) {
-    switch (action.type) {
-      case 'ADD-POST':
-        this._addPost();
-        break;
-      case 'UPDATE-CHANGE-POST':
-        this._updateChangePost(action.name, action.age, action.message);
-        break;
-      default:
-        break;
-    }
+    const propertyAction = [
+      {
+        type: 'ADD-POST',
+        fn: () => this._addPost(),
+      },
+      {
+        type: 'UPDATE-CHANGE-POST',
+        fn: () => this._updateChangePost(action.name, action.age, action.message),
+      }
+    ];
+
+    const { fn } = propertyAction.find(({ type }) => type === action.type);
+    fn();
   }
 };
 
