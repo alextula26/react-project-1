@@ -17,7 +17,7 @@ const getMessagesList = (messages) => messages.map(({id, message}) => (
 const Dialogs = ({ users, messages, messageForm, dispatch }) => {
   const usersList = getUsersList(users);
   const messagesList = getMessagesList(messages);
-  const message = React.createRef();
+  //const message = React.createRef();
 
   const setMessage = () => {
     dispatch(addMessageCreator());

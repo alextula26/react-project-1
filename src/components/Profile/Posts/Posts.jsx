@@ -27,7 +27,7 @@ const Posts = ({posts, postForm, dispatch}) => {
     <div className={style.profilePosts}>
       My posts
       <div className={style.postForm}>
-        <div><input type="text" ref={name} value={postForm.name }onChange={onChangePost}/></div>
+        <div><input type="text" ref={name} value={postForm.name } onChange={onChangePost}/></div>
         <div><input type="text" ref={age} value={postForm.age} onChange={onChangePost}/></div>
         <div><textarea ref={message} value={postForm.message} onChange={onChangePost}/></div>
         <div>
