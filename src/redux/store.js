@@ -1,4 +1,3 @@
-//import _ from 'lodash';
 import dialogsReducer from "./dialogsReducer";
 import profileReducer from "./profileReduser";
 
@@ -55,81 +54,11 @@ const store = {
     this._callObserver = observer;
   },
 
-
-  /*_addPost() {
-    const ids = _.map(this._state.profile.posts, (item) => item.id);
-    const id = _.last(ids) + 1;
-
-    const data = {
-      id,
-      name: this._state.profile.postForm.name,
-      age: this._state.profile.postForm.age,
-      message: this._state.profile.postForm.message,
-      like: 0,
-    };
-
-    this._state.profile.posts.push(data);
-
-    this._state.profile.postForm.name = '';
-    this._state.profile.postForm.age = '';
-    this._state.profile.postForm.message = '';
-
-    this._callObserver(this._state);
-  },
-
-  _updateChangePost(name, age, message) {
-    this._state.profile.postForm.name = name;
-    this._state.profile.postForm.age = age;
-    this._state.profile.postForm.message = message;
-
-    this._callObserver(this._state);
-  },
-
-  _addMessage() {
-    const ids = _.map(this._state.dialogs.messages, (item) => item.id);
-    const id = _.last(ids) + 1;
-    const data = {
-      id,
-      message: this._state.dialogs.messageForm.message,
-    };
-
-    this._state.dialogs.messages.push(data);
-    this._state.dialogs.messageForm.message = '';
-    this._callObserver(this._state);
-  },
-
-  _updateChangeMessage(message) {
-    this._state.dialogs.messageForm.message = message;
-    this._callObserver(this._state);
-  },*/
-
   dispatch(action) {
     //console.log(dialogsReducer(this._state.dialogs, action));
     this._state.dialogs = dialogsReducer(this._state.dialogs, action);
     this._state.profile = profileReducer(this._state.profile, action);
     this._callObserver(this._state);
-
-    /*const propertyAction = [
-      {
-        type: ADD_POST,
-        fn: () => this._addPost(),
-      },
-      {
-        type: UPDATE_CHANGE_POST,
-        fn: () => this._updateChangePost(action.name, action.age, action.message),
-      },
-      {
-        type: ADD_MESSAGE,
-        fn: () => this._addMessage(),
-      },
-      {
-        type: UPDATE_CHANGE_MESSAGE,
-        fn: () => this._updateChangeMessage(action.message),
-      },
-    ];
-
-    const { fn } = propertyAction.find(({ type }) => type === action.type);
-    fn();*/
   }
 };
 
