@@ -21,11 +21,11 @@ const Dialogs = ({ users, messages, messageForm, dispatch }) => {
 
   const setMessage = () => {
     dispatch(addMessageCreator());
-    dispatch(updateChangeMessageCreator(''));
   };
 
-  const onChangeMessage = () => {
-    dispatch(updateChangeMessageCreator(message.current.value));
+  const onChangeMessage = (e) => {
+    const message = e.target.value;
+    dispatch(updateChangeMessageCreator(message));
   };
 
   return (
@@ -38,7 +38,7 @@ const Dialogs = ({ users, messages, messageForm, dispatch }) => {
           {messagesList}
         </div>
         <div>
-          <div><textarea ref={message} value={messageForm.message} onChange={onChangeMessage}/></div>
+          <div><textarea value={messageForm.message} onChange={onChangeMessage}/></div>
           <div>
             <button onClick={setMessage}>Add post</button>
           </div>

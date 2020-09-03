@@ -10,7 +10,7 @@ export const updateChangePostCreator = (name, age, message) => (
   { type: UPDATE_CHANGE_POST, name, age, message }
 );
 export const addMessageCreator = () => ({type: ADD_MESSAGE});
-export const updateChangeMessageCreator = (message) => ({type: UPDATE_CHANGE_MESSAGE, message})
+export const updateChangeMessageCreator = (message) => ({type: UPDATE_CHANGE_MESSAGE, message});
 
 const store = {
   _state: {

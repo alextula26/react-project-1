@@ -15,7 +15,6 @@ const Posts = ({posts, postForm, dispatch}) => {
 
   const setPost = () => {
     dispatch(addPostCreator());
-    dispatch(updateChangePostCreator('', '', ''));
   };
 
   const onChangePost = () => {
