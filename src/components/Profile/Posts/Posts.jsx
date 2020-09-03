@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './Posts.module.css';
 import Post from './Post/Post.jsx';
-import {addPostCreator, updateChangePostCreator} from "../../../store";
+import {addPostCreator, updateChangePostCreator} from "../../../redux/store";
 
 const getPostsList = (posts) => posts.map(({id, name, age, message, like}) => (
     <Post key={id} name={name} age={age} message={message} like={like}/>

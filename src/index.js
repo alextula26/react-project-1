@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from "react-dom";
 import App from "./App";
 import './index.css';
-import store from "./store";
+import store from "./redux/store";
 import * as serviceWorker from './serviceWorker';
 
 const render = (state) => {

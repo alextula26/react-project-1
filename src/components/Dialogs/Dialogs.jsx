@@ -2,7 +2,7 @@ import React from 'react';
 import style from './Dialogs.module.css';
 import Dialog from "./Dialog/Dialog";
 import Message from "./Message/Message";
-import {addMessageCreator, updateChangeMessageCreator} from "../../store";
+import {addMessageCreator, updateChangeMessageCreator} from "../../redux/store";
 
 const getUsersList = (users) => users.map(({id, name}) => (
     <Dialog key={id} id={id} name={name}/>

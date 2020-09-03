@@ -1,4 +1,6 @@
-import _ from 'lodash';
+//import _ from 'lodash';
+import dialogsReducer from "./dialogsReducer";
+import profileReducer from "./profileReduser";
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_CHANGE_POST = 'UPDATE-CHANGE-POST';
@@ -54,7 +56,7 @@ const store = {
   },
 
 
-  _addPost() {
+  /*_addPost() {
     const ids = _.map(this._state.profile.posts, (item) => item.id);
     const id = _.last(ids) + 1;
 
@@ -93,18 +95,21 @@ const store = {
 
     this._state.dialogs.messages.push(data);
     this._state.dialogs.messageForm.message = '';
-
     this._callObserver(this._state);
   },
 
   _updateChangeMessage(message) {
     this._state.dialogs.messageForm.message = message;
-
     this._callObserver(this._state);
-  },
+  },*/
 
   dispatch(action) {
-    const propertyAction = [
+    //console.log(dialogsReducer(this._state.dialogs, action));
+    this._state.dialogs = dialogsReducer(this._state.dialogs, action);
+    this._state.profile = profileReducer(this._state.profile, action);
+    this._callObserver(this._state);
+
+    /*const propertyAction = [
       {
         type: ADD_POST,
         fn: () => this._addPost(),
@@ -124,7 +129,7 @@ const store = {
     ];
 
     const { fn } = propertyAction.find(({ type }) => type === action.type);
-    fn();
+    fn();*/
   }
 };
 
