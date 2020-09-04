@@ -55,7 +55,6 @@ const store = {
   },
 
   dispatch(action) {
-    //console.log(dialogsReducer(this._state.dialogs, action));
     this._state.dialogs = dialogsReducer(this._state.dialogs, action);
     this._state.profile = profileReducer(this._state.profile, action);
     this._callObserver(this._state);
