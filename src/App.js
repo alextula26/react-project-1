@@ -3,18 +3,18 @@ import './App.css';
 import Header from './components/Header/Header.jsx';
 import Navbar from './components/Navbar/Navbar.jsx';
 import Profile from './components/Profile/Profile.jsx';
-import Dialogs from './components/Dialogs/Dialogs.jsx';
 import {BrowserRouter, Route} from "react-router-dom";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
-const App = ({ state, dispatch }) => {
+const App = ({ store }) => {
   return (
     <BrowserRouter>
       <div className="app-wrapper">
         <Header/>
         <Navbar/>
         <div className="content">
-          <Route path='/dialogs' render={ () => <Dialogs users={state.dialogs.users} messages={state.dialogs.messages} messageForm={state.dialogs.messageForm} dispatch={dispatch} /> }/>
-          <Route path='/profile' render={ () => <Profile posts={state.profile.posts} postForm={state.profile.postForm} dispatch={dispatch} /> }/>
+          <Route path='/dialogs' render={ () => <DialogsContainer store={store} /> }/>
+          <Route path='/profile' render={ () => <Profile store={store} /> }/>
         </div>
       </div>
     </BrowserRouter>

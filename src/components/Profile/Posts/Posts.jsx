@@ -1,24 +1,25 @@
 import React from 'react';
 import style from './Posts.module.css';
 import Post from './Post/Post.jsx';
-import {addPostCreator, updateChangePostCreator} from "../../../redux/store";
 
 const getPostsList = (posts) => posts.map(({id, name, age, message, like}) => (
     <Post key={id} name={name} age={age} message={message} like={like}/>
   )
 );
 
-const Posts = ({posts, postForm, dispatch}) => {
+const Posts = ({setPost, changePost, profile}) => {
+  const {posts, postForm} = profile;
+
   const name = React.createRef();
   const age = React.createRef();
   const message = React.createRef();
 
-  const setPost = () => {
-    dispatch(addPostCreator());
+  const onSetPost = () => {
+    setPost();
   };
 
   const onChangePost = () => {
-    dispatch(updateChangePostCreator(name.current.value, age.current.value, message.current.value));
+    changePost(name.current.value, age.current.value, message.current.value);
   };
 
   const postsList = getPostsList(posts);
@@ -27,11 +28,11 @@ const Posts = ({posts, postForm, dispatch}) => {
     <div className={style.profilePosts}>
       My posts
       <div className={style.postForm}>
-        <div><input type="text" ref={name} value={postForm.name } onChange={onChangePost}/></div>
+        <div><input type="text" ref={name} value={postForm.name} onChange={onChangePost}/></div>
         <div><input type="text" ref={age} value={postForm.age} onChange={onChangePost}/></div>
         <div><textarea ref={message} value={postForm.message} onChange={onChangePost}/></div>
         <div>
-          <button onClick={setPost}>Add post</button>
+          <button onClick={onSetPost}>Add post</button>
         </div>
       </div>
       <div className={style.posts}>
