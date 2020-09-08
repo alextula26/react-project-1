@@ -4,15 +4,14 @@ import App from "./App";
 import './index.css';
 import store from "./redux/redux-store";
 import * as serviceWorker from './serviceWorker';
+import {Provider} from "./StoreContext";
 
 const render = (state) => {
   ReactDOM.render(
     <React.StrictMode>
-      <App
-        key="app"
-        state={state}
-        dispatch={store.dispatch.bind(store)}
-        store={store}/>
+      <Provider store={store}>
+        <App key="app"/>
+      </Provider>
     </React.StrictMode>,
     document.getElementById('root')
   );
