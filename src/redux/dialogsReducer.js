@@ -16,7 +16,7 @@ const initialState = {
     {id: 3, message: 'Message3'},
   ],
   messageForm: {
-    message: '',
+    message: '1',
   },
 };
 

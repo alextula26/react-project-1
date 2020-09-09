@@ -42,15 +42,20 @@ const updateChangePost = (state, {name, age, message}) => {
 };
 
 const profileReducer = (state = initialState, action) => {
+  const newState = {...state};
+
   if (action.type === ADD_POST) {
-    addPost(state);
+    addPost(newState);
   }
 
   if (action.type === UPDATE_CHANGE_POST) {
-    updateChangePost(state, action);
+    updateChangePost(newState, action);
   }
 
-  return state;
+  console.log(newState);
+  console.log(initialState);
+
+  return newState;
 };
 
 export default profileReducer;
