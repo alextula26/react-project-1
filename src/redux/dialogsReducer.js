@@ -16,7 +16,7 @@ const initialState = {
     {id: 3, message: 'Message3'},
   ],
   messageForm: {
-    message: '1',
+    message: '',
   },
 };
 
@@ -28,21 +28,25 @@ const addMessage = (state) => {
     message: state.messageForm.message,
   };
 
-  state.messages.push(data);
-  state.messageForm.message = '';
+  return {
+    ...state,
+    messages: [...state.messages, data],
+    messageForm: {message: '',},
+  }
 };
 
-const updateChangeMessage = (state, {message}) => {
-  state.messageForm.message = message;
-};
+const updateChangeMessage = (state, {message}) => ({
+  ...state,
+  messageForm: {message},
+});
 
 const dialogsReducer = (state = initialState, action) => {
   if (action.type === ADD_MESSAGE) {
-    addMessage(state);
+    return addMessage(state);
   }
 
   if (action.type === UPDATE_CHANGE_MESSAGE) {
-    updateChangeMessage(state, action);
+    return updateChangeMessage(state, action);
   }
 
   return state;

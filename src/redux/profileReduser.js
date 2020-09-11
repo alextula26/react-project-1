@@ -28,34 +28,31 @@ const addPost = (state) => {
     like: 0,
   };
 
-  state.posts.push(data);
-
-  state.postForm.name = '';
-  state.postForm.age = '';
-  state.postForm.message = '';
+  return {
+    posts: [...state.posts, data],
+    postForm: {
+      name: '',
+      age: '',
+      message: '',
+    },
+  }
 };
 
-const updateChangePost = (state, {name, age, message}) => {
-  state.postForm.name = name;
-  state.postForm.age = age;
-  state.postForm.message = message;
-};
+const updateChangePost = (state, {name, age, message}) => ({
+  ...state,
+  postForm: {name, age, message},
+});
 
 const profileReducer = (state = initialState, action) => {
-  const newState = {...state};
-
   if (action.type === ADD_POST) {
-    addPost(newState);
+    return addPost(state);
   }
 
   if (action.type === UPDATE_CHANGE_POST) {
-    updateChangePost(newState, action);
+    return updateChangePost(state, action);
   }
 
-  console.log(newState);
-  console.log(initialState);
-
-  return newState;
+  return state;
 };
 
 export default profileReducer;
