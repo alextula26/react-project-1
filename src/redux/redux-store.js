@@ -5,8 +5,8 @@ import usersReducer from "./usersReduser";
 
 const redusers = combineReducers({
   dialogs: dialogsReducer,
-  profile: profileReducer,
-  users: usersReducer,
+  profilePage: profileReducer,
+  usersPage: usersReducer,
 });
 
 const store = createStore(redusers);

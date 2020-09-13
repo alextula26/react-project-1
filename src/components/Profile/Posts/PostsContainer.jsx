@@ -2,11 +2,9 @@ import {addPostCreator, updateChangePostCreator} from "../../../redux/store";
 import Posts from "./Posts";
 import {connect} from "react-redux";
 
-const mapStateToProps = (state) => {
-  return {
-    profile: state.profile,
-  }
-};
+const mapStateToProps = (state) => ({
+  profile: state.profilePage,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   setPost: () => dispatch(addPostCreator()),

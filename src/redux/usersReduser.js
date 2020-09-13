@@ -1,12 +1,17 @@
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
+const SET_USERS_TOTAL_COUNT = 'SET_USERS_TOTAL_COUNT';
 
 const initialState = {
   users: [],
+  maxCountUsers: 0,
+  sizePage: 6,
+  currentPage: 1,
 };
 
-const updateUserFollow = (state, userId, bool) => (
+const updateUserFollow = (state = initialState, userId, bool) => (
   {
     ...state,
     users: state.users.map((user) => {
@@ -29,7 +34,15 @@ const usersReducer = (state = initialState, action) => {
   }
 
   if (action.type === SET_USERS) {
-    return {...state, users: [...state.users, ...action.users]};
+    return {...state, users: action.users};
+  }
+
+  if (action.type === SET_CURRENT_PAGE) {
+    return {...state, currentPage: action.page};
+  }
+
+  if (action.type === SET_USERS_TOTAL_COUNT) {
+    return {...state, maxCountUsers: action.count};
   }
 
   return state;
