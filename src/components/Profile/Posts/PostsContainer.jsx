@@ -8,13 +8,9 @@ const mapStateToProps = (state) => {
   }
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setPost: () => dispatch(addPostCreator()),
-    changePost: (name, age, message) => dispatch(updateChangePostCreator(name, age, message)),
-  }
-};
+const mapDispatchToProps = (dispatch) => ({
+  setPost: () => dispatch(addPostCreator()),
+  changePost: (name, age, message) => dispatch(updateChangePostCreator(name, age, message)),
+});
 
-const PostsContainer = connect(mapStateToProps, mapDispatchToProps)(Posts);
-
-export default PostsContainer;
+export default connect(mapStateToProps, mapDispatchToProps)(Posts);
