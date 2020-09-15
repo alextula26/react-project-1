@@ -11,16 +11,16 @@ const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_USERS_TOTAL_COUNT = 'SET_USERS_TOTAL_COUNT';
 const IS_LOADER = 'IS_LOADER';
 
-export const addPostCreator = () => ({ type: ADD_POST });
-export const updateChangePostCreator = (name, age, message) => (
-  { type: UPDATE_CHANGE_POST, name, age, message }
+export const setPost = () => ({type: ADD_POST});
+export const changePost = (name, age, message) => (
+  {type: UPDATE_CHANGE_POST, name, age, message}
 );
-export const addMessageCreator = () => ({type: ADD_MESSAGE});
-export const updateChangeMessageCreator = (message) => ({type: UPDATE_CHANGE_MESSAGE, message});
+export const setMessage = () => ({type: ADD_MESSAGE});
+export const changeMessage = (message) => ({type: UPDATE_CHANGE_MESSAGE, message});
 
-export const followCreator = (userId) => ({type: FOLLOW, userId});
-export const unfollowCreator = (userId) => ({type: UNFOLLOW, userId});
-export const setUsersCreator = (users) => ({type: SET_USERS, users});
-export const setCurrentPageCreator = (page) => ({type: SET_CURRENT_PAGE, page});
-export const setUsersTotalCountCreator = (count) => ({type: SET_USERS_TOTAL_COUNT, count});
-export const isLoaderCreator = (isLoader) => ({type: IS_LOADER, isLoader});
+export const follow = (userId) => ({type: FOLLOW, userId});
+export const unfollow = (userId) => ({type: UNFOLLOW, userId});
+export const setUsers = (users) => ({type: SET_USERS, users});
+export const setCurrentPage = (page) => ({type: SET_CURRENT_PAGE, page});
+export const setUsersTotalCount = (count) => ({type: SET_USERS_TOTAL_COUNT, count});
+export const isLoaderChanged = (isLoader) => ({type: IS_LOADER, isLoader});

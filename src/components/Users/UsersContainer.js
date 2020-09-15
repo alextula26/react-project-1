@@ -1,11 +1,12 @@
 import {connect} from "react-redux";
 import Users from "./Users";
 import {
-  followCreator,
-  setCurrentPageCreator,
-  setUsersCreator,
-  unfollowCreator,
-  setUsersTotalCountCreator, isLoaderCreator
+  follow,
+  setCurrentPage,
+  setUsers,
+  unfollow,
+  setUsersTotalCount,
+  isLoaderChanged
 } from "../../redux/store";
 import * as axios from "axios/index";
 import React from "react";
@@ -15,23 +16,23 @@ class UsersContainer extends React.Component {
   componentDidMount() {
     this.props.isLoaderChanged(true);
     axios
-    .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.users.currentPage}&count=${this.props.users.sizePage}`)
-    .then((responce) => {
-      this.props.setUsers(responce.data.items);
-      this.props.setUsersTotalCount(responce.data.totalCount);
-      this.props.isLoaderChanged(false);
-    });
+      .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.users.currentPage}&count=${this.props.users.sizePage}`)
+      .then((responce) => {
+        this.props.setUsers(responce.data.items);
+        this.props.setUsersTotalCount(responce.data.totalCount);
+        this.props.isLoaderChanged(false);
+      });
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.users.currentPage !== prevProps.users.currentPage) {
       this.props.isLoaderChanged(true);
       axios
-      .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.users.currentPage}&count=${this.props.users.sizePage}`)
-      .then((responce) => {
-        this.props.setUsers(responce.data.items);
-        this.props.isLoaderChanged(false);
-      });
+        .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.users.currentPage}&count=${this.props.users.sizePage}`)
+        .then((responce) => {
+          this.props.setUsers(responce.data.items);
+          this.props.isLoaderChanged(false);
+        });
     }
   }
 
@@ -57,7 +58,7 @@ const mapStateToProps = (state) => ({
   users: state.usersPage,
 });
 
-const mapDispatchToProps = (dispach) => ({
+/*const mapDispatchToProps = (dispach) => ({
   follow: (userId) => dispach(followCreator(userId)),
   unfollow: (userId) => dispach(unfollowCreator(userId)),
   setUsers: (users) => dispach(setUsersCreator(users)),
@@ -65,5 +66,13 @@ const mapDispatchToProps = (dispach) => ({
   setUsersTotalCount: (count) => dispach(setUsersTotalCountCreator(count)),
   isLoaderChanged: (isLoader) => dispach(isLoaderCreator(isLoader)),
 });
+*/
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
+export default connect(mapStateToProps, {
+  follow,
+  unfollow,
+  setUsers,
+  setCurrentPage,
+  setUsersTotalCount,
+  isLoaderChanged,
+})(UsersContainer);
