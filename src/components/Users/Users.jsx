@@ -6,7 +6,6 @@ import _ from 'lodash';
 const Users = (props) => {
   const countPages = Math.ceil(props.maxCountUsers / props.sizePage);
   const pages = _.range(1, countPages + 1);
-
   return (
     <div>
       {
@@ -16,7 +15,7 @@ const Users = (props) => {
               className={page === props.currentPage && style.active}
               onClick={() => props.setCurrentPage(page)}
             >
-              {page}
+              {page} |
             </span>
           )
         )
