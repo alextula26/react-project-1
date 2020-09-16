@@ -1,6 +1,6 @@
 import React from 'react';
 import {Route} from "react-router-dom";
-import Header from './components/Header/Header';
+import HeaderContainer from "./components/Header/HeaderContainer";
 import Navbar from './components/Navbar/Navbar';
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
@@ -10,7 +10,7 @@ import './App.css';
 const App = () => {
   return (
     <div className="app-wrapper">
-      <Header/>
+      <HeaderContainer/>
       <Navbar/>
       <div className="content">
         <Route path='/dialogs' render={() => <DialogsContainer/>}/>

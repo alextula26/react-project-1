@@ -29,3 +29,7 @@ export const isLoaderChanged = (isLoader) => ({type: IS_LOADER, isLoader});
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
+
+const SET_USER_DATA = 'SET_USER_DATA';
+
+export const setAuthUserData = (userId, email, login) => ({type: SET_USER_DATA, data: {userId, email, login}});
