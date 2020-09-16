@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './ProfileInfo.module.css';
 
-const ProfileInfo = () => {
+const ProfileInfo = ({profile}) => {
   return (
     <div className={style.profileInfo}>
       <div>
@@ -10,10 +10,11 @@ const ProfileInfo = () => {
           alt=""/>
       </div>
       <div className={style.descriptionInfo}>
-        ava + description
+        <div><img src={profile.photos.small} alt={profile.fullName}/></div>
+        <div>{profile.aboutMe}</div>
+        <div>{profile.lookingForAJobDescription}</div>
       </div>
     </div>
-
   )
 };
 

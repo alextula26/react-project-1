@@ -2,6 +2,7 @@ import React from 'react';
 import style from './Users.module.css';
 import photoUrl from '../../assets/images/default.jpg'
 import _ from 'lodash';
+import {NavLink} from "react-router-dom";
 
 const Users = (props) => {
   const countPages = Math.ceil(props.maxCountUsers / props.sizePage);
@@ -23,7 +24,7 @@ const Users = (props) => {
       {
         props.users.map((user) => (
             <div key={user.id}>
-              <div><img src={user.photos.small || photoUrl} className={style.photo} alt={user.name}/></div>
+              <div><NavLink to={`/profile/${user.id}`}><img src={user.photos.small || photoUrl} className={style.photo} alt={user.name}/></NavLink></div>
               <div>{user.name}</div>
               <div>{user.status}</div>
               <div>{"user.location.country"}</div>
