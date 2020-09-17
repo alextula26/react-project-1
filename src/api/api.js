@@ -17,7 +17,10 @@ const API = {
   ),
   setFollow: (userId) => (
     instance.post(`follow/${userId}`, {}).then((responce) => responce.data)
-  )
+  ),
+  auth: () => (
+    instance.get('auth/me').then((responce) => responce.data)
+  ),
 };
 
 export default API;
