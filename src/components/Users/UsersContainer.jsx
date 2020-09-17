@@ -1,3 +1,4 @@
+import React from "react";
 import {connect} from "react-redux";
 import Users from "./Users";
 import {
@@ -8,31 +9,26 @@ import {
   setUsersTotalCount,
   isLoaderChanged
 } from "../../redux/store";
-import * as axios from "axios/index";
-import React from "react";
 import Loader from "../commons/Loader/Loader";
+import API from "../../api/api";
 
 class UsersContainer extends React.Component {
   componentDidMount() {
     this.props.isLoaderChanged(true);
-    axios
-      .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.users.currentPage}&count=${this.props.users.sizePage}`)
-      .then((responce) => {
-        this.props.setUsers(responce.data.items);
-        this.props.setUsersTotalCount(responce.data.totalCount);
-        this.props.isLoaderChanged(false);
-      });
+    API.getUsers(this.props.users.currentPage, this.props.users.sizePage).then((data) => {
+      this.props.setUsers(data.items);
+      this.props.setUsersTotalCount(data.totalCount);
+      this.props.isLoaderChanged(false);
+    });
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.users.currentPage !== prevProps.users.currentPage) {
       this.props.isLoaderChanged(true);
-      axios
-        .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.users.currentPage}&count=${this.props.users.sizePage}`)
-        .then((responce) => {
-          this.props.setUsers(responce.data.items);
-          this.props.isLoaderChanged(false);
-        });
+      API.getUsers(this.props.users.currentPage, this.props.users.sizePage).then((data) => {
+        this.props.setUsers(data.items);
+        this.props.isLoaderChanged(false);
+      });
     }
   }
 

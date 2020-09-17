@@ -18,7 +18,7 @@ const updateUserFollow = (state = initialState, userId, bool) => (
     ...state,
     users: state.users.map((user) => {
       if (user.id === userId) {
-        return {...user, follow: bool}
+        return {...user, followed: bool}
       }
       return user;
     }),
