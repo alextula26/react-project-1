@@ -3,27 +3,6 @@ import style from './Users.module.css';
 import photoUrl from '../../assets/images/default.jpg'
 import _ from 'lodash';
 import {NavLink} from "react-router-dom";
-import API from "../../api/api";
-
-const changeFollowed = (userId, props) => {
-  props.folowingInProgressChanged(true, userId);
-  API.setFollow(userId).then((data) => {
-    if (data.resultCode === 0) {
-      props.follow(userId);
-    }
-    props.folowingInProgressChanged(false, userId);
-  });
-};
-
-const changeUnFollowed = (userId, props) => {
-  props.folowingInProgressChanged(true, userId);
-  API.deleteFollow(userId).then((data) => {
-    if (data.resultCode === 0) {
-      props.unfollow(userId);
-    }
-    props.folowingInProgressChanged(false, userId);
-  });
-};
 
 const Users = (props) => {
   const countPages = Math.ceil(props.maxCountUsers / props.sizePage);
@@ -55,8 +34,17 @@ const Users = (props) => {
               <div>{"user.location.country"}</div>
               <div>{"user.location.city"}</div>
               <div>{user.status}</div>
-              {!user.followed ? <button disabled={props.folowingInProgress.some((id) => id === user.id)} onClick={() => changeFollowed(user.id, props)}>Follow</button> :
-                <button disabled={props.folowingInProgress.some((id) => id === user.id)} onClick={() => changeUnFollowed(user.id, props)}>unFollow</button>}
+              {
+                !user.followed
+                  ? <button
+                    disabled={props.folowingInProgress.some((id) => id === user.id)}
+                    onClick={() => props.follow(user.id)}
+                  >Follow</button>
+                  : <button
+                    disabled={props.folowingInProgress.some((id) => id === user.id)}
+                    onClick={() => props.unfollow(user.id)}
+                  >unFollow</button>
+              }
             </div>
           )
         )

@@ -1,35 +1,17 @@
 import React from "react";
 import {connect} from "react-redux";
 import Users from "./Users";
-import {
-  follow,
-  setCurrentPage,
-  setUsers,
-  unfollow,
-  setUsersTotalCount,
-  isLoaderChanged,
-  folowingInProgressChanged
-} from "../../redux/store";
 import Loader from "../commons/Loader/Loader";
-import API from "../../api/api";
+import {setCurrentPage, getUsers, follow, unfollow} from "../../redux/usersReduser";
 
 class UsersContainer extends React.Component {
   componentDidMount() {
-    this.props.isLoaderChanged(true);
-    API.getUsers(this.props.users.currentPage, this.props.users.sizePage).then((data) => {
-      this.props.setUsers(data.items);
-      this.props.setUsersTotalCount(data.totalCount);
-      this.props.isLoaderChanged(false);
-    });
+    this.props.getUsers(this.props.users.currentPage, this.props.users.sizePage);
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.users.currentPage !== prevProps.users.currentPage) {
-      this.props.isLoaderChanged(true);
-      API.getUsers(this.props.users.currentPage, this.props.users.sizePage).then((data) => {
-        this.props.setUsers(data.items);
-        this.props.isLoaderChanged(false);
-      });
+      this.props.getUsers(this.props.users.currentPage, this.props.users.sizePage);
     }
   }
 
@@ -46,7 +28,6 @@ class UsersContainer extends React.Component {
           folowingInProgress={this.props.users.folowingInProgress}
           follow={this.props.follow}
           unfollow={this.props.unfollow}
-          folowingInProgressChanged={this.props.folowingInProgressChanged}
         />
       </>
     )
@@ -57,22 +38,9 @@ const mapStateToProps = (state) => ({
   users: state.usersPage,
 });
 
-/*const mapDispatchToProps = (dispach) => ({
-  follow: (userId) => dispach(followCreator(userId)),
-  unfollow: (userId) => dispach(unfollowCreator(userId)),
-  setUsers: (users) => dispach(setUsersCreator(users)),
-  setCurrentPage: (page) => dispach(setCurrentPageCreator(page)),
-  setUsersTotalCount: (count) => dispach(setUsersTotalCountCreator(count)),
-  isLoaderChanged: (isLoader) => dispach(isLoaderCreator(isLoader)),
-});
-*/
-
 export default connect(mapStateToProps, {
   follow,
   unfollow,
-  setUsers,
   setCurrentPage,
-  setUsersTotalCount,
-  isLoaderChanged,
-  folowingInProgressChanged
+  getUsers
 })(UsersContainer);
