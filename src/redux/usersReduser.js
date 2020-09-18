@@ -4,6 +4,7 @@ const SET_USERS = 'SET_USERS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_USERS_TOTAL_COUNT = 'SET_USERS_TOTAL_COUNT';
 const IS_LOADER = 'IS_LOADER';
+const FOLLOWING_PROGRESS = 'FOLLOWING_PROGRESS';
 
 const initialState = {
   users: [],
@@ -11,6 +12,7 @@ const initialState = {
   sizePage: 6,
   currentPage: 1,
   isLoader: false,
+  folowingInProgress: [2, 3],
 };
 
 const updateUserFollow = (state = initialState, userId, bool) => (
@@ -49,6 +51,14 @@ const usersReducer = (state = initialState, action) => {
 
   if (action.type === IS_LOADER) {
     return {...state, isLoader: action.isLoader};
+  }
+  if (action.type === FOLLOWING_PROGRESS) {
+    return {
+      ...state,
+      folowingInProgress: action.isFolowing
+        ? [...state.folowingInProgress, action.userId]
+        : [state.folowingInProgress.filter((id) => id !== action.userId)]
+    };
   }
 
   return state;

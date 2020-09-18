@@ -18,6 +18,7 @@ const SET_USERS = 'SET_USERS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_USERS_TOTAL_COUNT = 'SET_USERS_TOTAL_COUNT';
 const IS_LOADER = 'IS_LOADER';
+const FOLLOWING_PROGRESS = 'FOLLOWING_PROGRESS';
 
 export const follow = (userId) => ({type: FOLLOW, userId});
 export const unfollow = (userId) => ({type: UNFOLLOW, userId});
@@ -25,6 +26,7 @@ export const setUsers = (users) => ({type: SET_USERS, users});
 export const setCurrentPage = (page) => ({type: SET_CURRENT_PAGE, page});
 export const setUsersTotalCount = (count) => ({type: SET_USERS_TOTAL_COUNT, count});
 export const isLoaderChanged = (isLoader) => ({type: IS_LOADER, isLoader});
+export const folowingInProgressChanged = (isFolowing, userId) => ({type: FOLLOWING_PROGRESS, isFolowing, userId});
 
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 

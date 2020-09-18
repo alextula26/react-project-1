@@ -5,19 +5,23 @@ import _ from 'lodash';
 import {NavLink} from "react-router-dom";
 import API from "../../api/api";
 
-const changeFollowed = (userId, follow) => {
+const changeFollowed = (userId, props) => {
+  props.folowingInProgressChanged(true, userId);
   API.setFollow(userId).then((data) => {
     if (data.resultCode === 0) {
-      follow(userId);
+      props.follow(userId);
     }
+    props.folowingInProgressChanged(false, userId);
   });
 };
 
-const changeUnFollowed = (userId, unfollow) => {
+const changeUnFollowed = (userId, props) => {
+  props.folowingInProgressChanged(true, userId);
   API.deleteFollow(userId).then((data) => {
     if (data.resultCode === 0) {
-      unfollow(userId);
+      props.unfollow(userId);
     }
+    props.folowingInProgressChanged(false, userId);
   });
 };
 
@@ -51,8 +55,8 @@ const Users = (props) => {
               <div>{"user.location.country"}</div>
               <div>{"user.location.city"}</div>
               <div>{user.status}</div>
-              {!user.followed ? <button onClick={() => changeFollowed(user.id, props.follow)}>Follow</button> :
-                <button onClick={() => changeUnFollowed(user.id, props.unfollow)}>unFollow</button>}
+              {!user.followed ? <button disabled={props.folowingInProgress.some((id) => id === user.id)} onClick={() => changeFollowed(user.id, props)}>Follow</button> :
+                <button disabled={props.folowingInProgress.some((id) => id === user.id)} onClick={() => changeUnFollowed(user.id, props)}>unFollow</button>}
             </div>
           )
         )

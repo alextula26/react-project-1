@@ -7,7 +7,8 @@ import {
   setUsers,
   unfollow,
   setUsersTotalCount,
-  isLoaderChanged
+  isLoaderChanged,
+  folowingInProgressChanged
 } from "../../redux/store";
 import Loader from "../commons/Loader/Loader";
 import API from "../../api/api";
@@ -42,8 +43,10 @@ class UsersContainer extends React.Component {
           currentPage={this.props.users.currentPage}
           setCurrentPage={this.props.setCurrentPage}
           users={this.props.users.users}
+          folowingInProgress={this.props.users.folowingInProgress}
           follow={this.props.follow}
           unfollow={this.props.unfollow}
+          folowingInProgressChanged={this.props.folowingInProgressChanged}
         />
       </>
     )
@@ -71,4 +74,5 @@ export default connect(mapStateToProps, {
   setCurrentPage,
   setUsersTotalCount,
   isLoaderChanged,
+  folowingInProgressChanged
 })(UsersContainer);
