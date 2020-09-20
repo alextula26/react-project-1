@@ -1,6 +1,6 @@
-import {setPost, changePost} from "../../../redux/store";
-import Posts from "./Posts";
 import {connect} from "react-redux";
+import {changePost, setPost} from "../../../redux/profileReduser";
+import Posts from "./Posts";
 
 const mapStateToProps = (state) => ({
   profile: state.profilePage,

@@ -1,8 +1,8 @@
 import React from "react";
 import {connect} from "react-redux";
+import {setCurrentPage, getUsers, follow, unfollow} from "../../redux/usersReduser";
 import Users from "./Users";
 import Loader from "../commons/Loader/Loader";
-import {setCurrentPage, getUsers, follow, unfollow} from "../../redux/usersReduser";
 
 class UsersContainer extends React.Component {
   componentDidMount() {

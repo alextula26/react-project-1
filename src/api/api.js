@@ -12,6 +12,9 @@ const API = {
   getUsers: (currentPage, sizePage) => (
     instance.get(`users?page=${currentPage}&count=${sizePage}`).then((responce) => responce.data)
   ),
+  getUser: (userId) => (
+    instance.get(`profile/${userId}`).then((responce) => responce.data)
+  ),
   deleteFollow: (userId) => (
     instance.delete(`follow/${userId}`).then((responce) => responce.data)
   ),

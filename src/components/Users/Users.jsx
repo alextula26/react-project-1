@@ -8,15 +8,14 @@ const Users = (props) => {
   const countPages = Math.ceil(props.maxCountUsers / props.sizePage);
   const pages = _.range(1, countPages + 1);
   return (
-    <div>
+    <>
       {
         pages.map((page) => (
             <span
               key={`page-user-${page}`}
               className={page === props.currentPage && style.active}
               onClick={() => props.setCurrentPage(page)}
-            >
-              {page} |
+            >{page} |
             </span>
           )
         )
@@ -49,7 +48,7 @@ const Users = (props) => {
           )
         )
       }
-    </div>
+    </>
   );
 };
 

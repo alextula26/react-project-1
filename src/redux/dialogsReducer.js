@@ -52,4 +52,7 @@ const dialogsReducer = (state = initialState, action) => {
   return state;
 };
 
+export const setMessage = () => ({type: ADD_MESSAGE});
+export const changeMessage = (message) => ({type: UPDATE_CHANGE_MESSAGE, message});
+
 export default dialogsReducer;

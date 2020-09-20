@@ -1,37 +1,5 @@
-const ADD_POST = 'ADD-POST';
-const UPDATE_CHANGE_POST = 'UPDATE-CHANGE-POST';
 
-export const setPost = () => ({type: ADD_POST});
-export const changePost = (name, age, message) => (
-  {type: UPDATE_CHANGE_POST, name, age, message}
-);
 
-const ADD_MESSAGE = 'ADD-MESSAGE';
-const UPDATE_CHANGE_MESSAGE = 'UPDATE-CHANGE-MESSAGE';
+/*const SET_USER_DATA = 'SET_USER_DATA';
 
-export const setMessage = () => ({type: ADD_MESSAGE});
-export const changeMessage = (message) => ({type: UPDATE_CHANGE_MESSAGE, message});
-
-const FOLLOW = 'FOLLOW';
-const UNFOLLOW = 'UNFOLLOW';
-const SET_USERS = 'SET_USERS';
-const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
-const SET_USERS_TOTAL_COUNT = 'SET_USERS_TOTAL_COUNT';
-const IS_LOADER = 'IS_LOADER';
-const FOLLOWING_PROGRESS = 'FOLLOWING_PROGRESS';
-
-export const follow = (userId) => ({type: FOLLOW, userId});
-export const unfollow = (userId) => ({type: UNFOLLOW, userId});
-export const setUsers = (users) => ({type: SET_USERS, users});
-export const setCurrentPage = (page) => ({type: SET_CURRENT_PAGE, page});
-export const setUsersTotalCount = (count) => ({type: SET_USERS_TOTAL_COUNT, count});
-export const isLoaderChanged = (isLoader) => ({type: IS_LOADER, isLoader});
-export const folowingInProgressChanged = (isFolowing, userId) => ({type: FOLLOWING_PROGRESS, isFolowing, userId});
-
-const SET_USER_PROFILE = 'SET_USER_PROFILE';
-
-export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
-
-const SET_USER_DATA = 'SET_USER_DATA';
-
-export const setAuthUserData = (userId, email, login) => ({type: SET_USER_DATA, data: {userId, email, login}});
+export const setAuthUserData = (userId, email, login) => ({type: SET_USER_DATA, data: {userId, email, login}});*/

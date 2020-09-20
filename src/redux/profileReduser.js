@@ -1,3 +1,4 @@
+import API from "../api/api";
 import _ from 'lodash';
 
 const ADD_POST = 'ADD-POST';
@@ -31,6 +32,7 @@ const addPost = (state) => {
   };
 
   return {
+    ...state,
     posts: [...state.posts, data],
     postForm: {
       name: '',
@@ -46,11 +48,15 @@ const updateChangePost = (state, {name, age, message}) => ({
 });
 
 const profileReducer = (state = initialState, action) => {
+
   if (action.type === ADD_POST) {
+    console.log('ADD_POST');
+    console.log(state);
     return addPost(state);
   }
 
   if (action.type === UPDATE_CHANGE_POST) {
+    console.log('UPDATE_CHANGE_POST');
     return updateChangePost(state, action);
   }
 
@@ -59,6 +65,15 @@ const profileReducer = (state = initialState, action) => {
   }
 
   return state;
+};
+export const setPost = () => ({type: ADD_POST});
+export const changePost = (name, age, message) => ({type: UPDATE_CHANGE_POST, name, age, message});
+export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
+
+export const getUser = (userId) => (dispatch) => {
+  API.getUser(userId).then((data) => {
+    dispatch(setUserProfile(data));
+  });
 };
 
 export default profileReducer;

@@ -1,6 +1,6 @@
 import Dialogs from "./Dialogs";
-import {setMessage, changeMessage} from "../../redux/store";
 import {connect} from "react-redux";
+import {changeMessage, setMessage} from "../../redux/dialogsReducer";
 
 const mapStateToProps = (state) => ({
   dialogs: state.dialogs,
