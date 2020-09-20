@@ -65,14 +65,14 @@ const usersReducer = (state = initialState, action) => {
 
   return state;
 };
-
-export const followSuccess = (userId) => ({type: FOLLOW, userId});
-export const unfollowSuccess = (userId) => ({type: UNFOLLOW, userId});
-export const setUsers = (users) => ({type: SET_USERS, users});
 export const setCurrentPage = (page) => ({type: SET_CURRENT_PAGE, page});
-export const setUsersTotalCount = (count) => ({type: SET_USERS_TOTAL_COUNT, count});
-export const isLoaderChanged = (isLoader) => ({type: IS_LOADER, isLoader});
-export const folowingInProgressChanged = (isFolowing, userId) => ({type: FOLLOWING_PROGRESS, isFolowing, userId});
+
+const followSuccess = (userId) => ({type: FOLLOW, userId});
+const unfollowSuccess = (userId) => ({type: UNFOLLOW, userId});
+const setUsers = (users) => ({type: SET_USERS, users});
+const setUsersTotalCount = (count) => ({type: SET_USERS_TOTAL_COUNT, count});
+const isLoaderChanged = (isLoader) => ({type: IS_LOADER, isLoader});
+const folowingInProgressChanged = (isFolowing, userId) => ({type: FOLLOWING_PROGRESS, isFolowing, userId});
 
 export const getUsers = (currentPage, sizePage) => (dispatch) => {
   dispatch(isLoaderChanged(true));

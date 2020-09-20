@@ -8,6 +8,7 @@ const Profile = (props) => {
   if (!props.profile.profile) {
     return <Loader/>
   }
+
   return (
     <div className={style.profile}>
       <ProfileInfo profile={props.profile.profile}/>
