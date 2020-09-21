@@ -1,10 +1,13 @@
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import {changeMessage, setMessage} from "../../redux/dialogsReducer";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 const mapStateToProps = (state) => ({
-  dialogs: state.dialogs,
-  isAuth: state.auth.isAuth,
+  dialogs: state.dialogs
 });
 
-export default connect(mapStateToProps, {setMessage, changeMessage})(Dialogs);
+const AuthRedirectComponent = withAuthRedirect(Dialogs);
+
+export default connect(mapStateToProps, {setMessage, changeMessage})(AuthRedirectComponent);
+

@@ -2,7 +2,6 @@ import React from 'react';
 import style from './Dialogs.module.css';
 import Dialog from "./Dialog/Dialog";
 import Message from "./Message/Message";
-import {Redirect} from "react-router-dom";
 
 const getUsersList = (users) => users.map(({id, name}) => (
     <Dialog key={id} id={id} name={name}/>
@@ -27,10 +26,6 @@ const Dialogs = ({changeMessage, setMessage, dialogs, isAuth}) => {
   const onChangeMessage = (e) => {
     changeMessage(e.target.value);
   };
-
-  if(!isAuth) {
-    return <Redirect to='/login' />
-  }
 
   return (
     <div className={style.dialogs}>
