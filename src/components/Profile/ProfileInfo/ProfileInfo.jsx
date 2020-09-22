@@ -1,13 +1,12 @@
 import React from 'react';
 import style from './ProfileInfo.module.css';
+import ProfileStatus from "./ProfileStatus";
 
 const ProfileInfo = ({profile}) => {
   return (
     <div className={style.profileInfo}>
       <div>
-        <img
-          src='https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&h=350'
-          alt=""/>
+        <ProfileStatus status={'my status'}/>
       </div>
       <div className={style.descriptionInfo}>
         <div><img src={profile.photos.small} alt={profile.fullName}/></div>
