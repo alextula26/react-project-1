@@ -24,6 +24,12 @@ const API = {
   auth: () => (
     instance.get('auth/me').then((responce) => responce.data)
   ),
+  getStatus: (userId) => (
+    instance.get(`profile/status/${userId}`)
+  ),
+  updateStatus: (status) => (
+    instance.put(`profile/status`, {status})
+  ),
 };
 
 export default API;

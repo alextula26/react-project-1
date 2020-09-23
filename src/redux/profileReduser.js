@@ -4,6 +4,7 @@ import _ from 'lodash';
 const ADD_POST = 'ADD-POST';
 const UPDATE_CHANGE_POST = 'UPDATE-CHANGE-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
+const SET_STATUS = 'SET_STATUS';
 
 const initialState = {
   profile: null,
@@ -17,6 +18,7 @@ const initialState = {
     age: '',
     message: '',
   },
+  status: '',
 };
 
 const addPost = (state) => {
@@ -61,16 +63,35 @@ const profileReducer = (state = initialState, action) => {
     return {...state, profile: action.profile};
   }
 
+  if (action.type === SET_STATUS) {
+    return {...state, status: action.status};
+  }
+
   return state;
 };
 export const setPost = () => ({type: ADD_POST});
 export const changePost = (name, age, message) => ({type: UPDATE_CHANGE_POST, name, age, message});
 
 const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
+const setStatusProfile = (status) => ({type: SET_STATUS, status});
 
 export const getUser = (userId) => (dispatch) => {
   API.getUser(userId).then((data) => {
     dispatch(setUserProfile(data));
+  });
+};
+
+export const getStatus = (userId) => (dispatch) => {
+  API.getStatus(userId).then((responce) => {
+    dispatch(setStatusProfile(responce.data));
+  });
+};
+
+export const updateStatus = (status) => (dispatch) => {
+  API.updateStatus(status).then((responce) => {
+    if (responce.data.resultCode === 0) {
+      dispatch(setStatusProfile(status));
+    }
   });
 };
 

@@ -8,10 +8,9 @@ const Profile = (props) => {
   if (!props.profile.profile) {
     return <Loader/>
   }
-
   return (
     <div className={style.profile}>
-      <ProfileInfo profile={props.profile.profile}/>
+      <ProfileInfo profile={props.profile.profile} status={props.profile.status} updateStatus={props.updateStatus}/>
       <PostsContainer/>
     </div>
   )
