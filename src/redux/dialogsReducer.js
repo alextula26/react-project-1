@@ -20,18 +20,18 @@ const initialState = {
   },
 };
 
-const addMessage = (state) => {
+const addMessage = (state, {message}) => {
   const ids = _.map(state.messages, (item) => item.id);
   const id = _.last(ids) + 1;
   const data = {
     id,
-    message: state.messageForm.message,
+    message,
   };
 
   return {
     ...state,
     messages: [...state.messages, data],
-    messageForm: {message: '',},
+    //messageForm: {message: '',},
   }
 };
 
@@ -42,7 +42,7 @@ const updateChangeMessage = (state, {message}) => ({
 
 const dialogsReducer = (state = initialState, action) => {
   if (action.type === ADD_MESSAGE) {
-    return addMessage(state);
+    return addMessage(state, action);
   }
 
   if (action.type === UPDATE_CHANGE_MESSAGE) {
@@ -52,7 +52,7 @@ const dialogsReducer = (state = initialState, action) => {
   return state;
 };
 
-export const setMessage = () => ({type: ADD_MESSAGE});
+export const setMessage = (message) => ({type: ADD_MESSAGE, message});
 export const changeMessage = (message) => ({type: UPDATE_CHANGE_MESSAGE, message});
 
 export default dialogsReducer;
