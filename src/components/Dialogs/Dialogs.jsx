@@ -27,19 +27,11 @@ const AddMessageForm = (props) => {
 
 const AddMessageReduxForm = reduxForm({form: 'dialogAddMessageForm'})(AddMessageForm);
 
-const Dialogs = ({changeMessage, setMessage, dialogs, isAuth}) => {
-  const {users, messages, messageForm} = dialogs;
+const Dialogs = ({setMessage, dialogs, isAuth}) => {
+  const {users, messages} = dialogs;
 
   const usersList = getUsersList(users);
   const messagesList = getMessagesList(messages);
-
-  /*const onSetMessage = () => {
-    setMessage();
-  };*/
-
-  /*const onChangeMessage = (e) => {
-    changeMessage(e.target.value);
-  };*/
 
   const onSubmit = (formData) => {
     setMessage(formData.message);

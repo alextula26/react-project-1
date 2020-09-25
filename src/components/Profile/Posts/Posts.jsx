@@ -1,40 +1,44 @@
 import React from 'react';
 import style from './Posts.module.css';
 import Post from './Post/Post.jsx';
+import {Field, reduxForm} from "redux-form";
 
 const getPostsList = (posts) => posts.map(({id, name, age, message, like}) => (
     <Post key={id} name={name} age={age} message={message} like={like}/>
   )
 );
 
-const Posts = ({setPost, changePost, profile}) => {
-  const {posts, postForm} = profile;
+const AddPostForm = (props) => {
+  return (
+    <div className={style.postForm}>
+      <form onSubmit={props.handleSubmit}>
+        <div><Field component="input" name="name" type="text" placeholder="Введите имя" /></div>
+        <div><Field component="input" name="age" type="text" placeholder="Введите возраст" /></div>
+        <div><Field component="textarea" name="message" placeholder="Введите сообщение" /></div>
+        <div>
+          <button>Add post</button>
+        </div>
+      </form>
+    </div>
+  )
+};
 
-  const name = React.createRef();
-  const age = React.createRef();
-  const message = React.createRef();
+const AddPostRedaxForm = reduxForm({form: 'profileAddPostForm'})(AddPostForm);
 
-  const onSetPost = () => {
-    setPost();
-  };
-
-  const onChangePost = () => {
-    changePost(name.current.value, age.current.value, message.current.value);
-  };
+const Posts = ({setPost, profile}) => {
+  const {posts} = profile;
 
   const postsList = getPostsList(posts);
+
+  const onSubmit = ({name, age, message}) => {
+    setPost(name, age, message);
+  };
 
   return (
     <div className={style.profilePosts}>
       My posts
-      <div className={style.postForm}>
-        <div><input type="text" ref={name} value={postForm.name} onChange={onChangePost}/></div>
-        <div><input type="text" ref={age} value={postForm.age} onChange={onChangePost}/></div>
-        <div><textarea ref={message} value={postForm.message} onChange={onChangePost}/></div>
-        <div>
-          <button onClick={onSetPost}>Add post</button>
-        </div>
-      </div>
+      <AddPostRedaxForm onSubmit={onSubmit} />
+
       <div className={style.posts}>
         {postsList}
       </div>

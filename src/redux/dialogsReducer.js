@@ -1,7 +1,6 @@
 import _ from 'lodash';
 
 const ADD_MESSAGE = 'ADD-MESSAGE';
-const UPDATE_CHANGE_MESSAGE = 'UPDATE-CHANGE-MESSAGE';
 
 const initialState = {
   users: [
@@ -15,9 +14,6 @@ const initialState = {
     {id: 2, message: 'Message2'},
     {id: 3, message: 'Message3'},
   ],
-  messageForm: {
-    message: '',
-  },
 };
 
 const addMessage = (state, {message}) => {
@@ -31,28 +27,17 @@ const addMessage = (state, {message}) => {
   return {
     ...state,
     messages: [...state.messages, data],
-    //messageForm: {message: '',},
   }
 };
-
-const updateChangeMessage = (state, {message}) => ({
-  ...state,
-  messageForm: {message},
-});
 
 const dialogsReducer = (state = initialState, action) => {
   if (action.type === ADD_MESSAGE) {
     return addMessage(state, action);
   }
 
-  if (action.type === UPDATE_CHANGE_MESSAGE) {
-    return updateChangeMessage(state, action);
-  }
-
   return state;
 };
 
 export const setMessage = (message) => ({type: ADD_MESSAGE, message});
-export const changeMessage = (message) => ({type: UPDATE_CHANGE_MESSAGE, message});
 
 export default dialogsReducer;
