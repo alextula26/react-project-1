@@ -30,6 +30,12 @@ const API = {
   updateStatus: (status) => (
     instance.put(`profile/status`, {status})
   ),
+  login: (email, password, rememberMe = false) => (
+    instance.post('/auth/login', {email, password, rememberMe})
+  ),
+  logout: () => (
+    instance.delete('/auth/login')
+  ),
 };
 
 export default API;
