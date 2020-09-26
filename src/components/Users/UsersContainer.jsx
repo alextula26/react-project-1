@@ -5,6 +5,10 @@ import Users from "./Users";
 import Loader from "../commons/Loader/Loader";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
+import {
+  getCurrentPage, getFolowingInProgress, getIsLoader, getMaxCountUsers, getSizePage,
+  getUsers
+} from "../../redux/userSelectors";
 
 class UsersContainer extends React.Component {
   componentDidMount() {
@@ -37,15 +41,15 @@ class UsersContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  users: state.usersPage.users,
-  maxCountUsers: state.usersPage.maxCountUsers,
-  sizePage: state.usersPage.sizePage,
-  currentPage: state.usersPage.currentPage,
-  folowingInProgress: state.usersPage.folowingInProgress,
-  isLoader: state.usersPage.isLoader,
+  users: getUsers(state),
+  maxCountUsers: getMaxCountUsers(state),
+  sizePage: getSizePage(state),
+  currentPage: getCurrentPage(state),
+  folowingInProgress: getFolowingInProgress(state),
+  isLoader: getIsLoader(state),
 });
 
 export default compose(
-  connect(mapStateToProps, {follow, unfollow, requestUsers, onChangePage}),
+  connect(mapStateToProps, {requestUsers, follow, unfollow, onChangePage}),
   withAuthRedirect
 )(UsersContainer);
