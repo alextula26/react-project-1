@@ -3,7 +3,6 @@ import style from './Header.module.css';
 import {NavLink} from "react-router-dom";
 
 const Header = (props) => {
-  console.log(props)
   return <>
     <header className={style.header}>
       <div><img src='https://www.freelogodesign.org/Content/img/logo-ex-7.png' alt=""/></div>

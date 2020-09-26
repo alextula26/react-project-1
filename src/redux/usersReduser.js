@@ -65,7 +65,6 @@ const usersReducer = (state = initialState, action) => {
 
   return state;
 };
-export const setCurrentPage = (page) => ({type: SET_CURRENT_PAGE, page});
 
 const followSuccess = (userId) => ({type: FOLLOW, userId});
 const unfollowSuccess = (userId) => ({type: UNFOLLOW, userId});
@@ -73,8 +72,13 @@ const setUsers = (users) => ({type: SET_USERS, users});
 const setUsersTotalCount = (count) => ({type: SET_USERS_TOTAL_COUNT, count});
 const isLoaderChanged = (isLoader) => ({type: IS_LOADER, isLoader});
 const folowingInProgressChanged = (isFolowing, userId) => ({type: FOLLOWING_PROGRESS, isFolowing, userId});
+const setCurrentPage = (page) => ({type: SET_CURRENT_PAGE, page});
 
-export const getUsers = (currentPage, sizePage) => (dispatch) => {
+export const onChangePage = (page) => (dispatch) => {
+  dispatch(setCurrentPage(page));
+};
+
+export const requestUsers = (currentPage, sizePage) => (dispatch) => {
   dispatch(isLoaderChanged(true));
   API.getUsers(currentPage, sizePage).then((data) => {
     dispatch(setUsers(data.items));

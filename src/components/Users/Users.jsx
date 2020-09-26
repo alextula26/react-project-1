@@ -14,7 +14,7 @@ const Users = (props) => {
             <span
               key={`page-user-${page}`}
               className={page === props.currentPage && style.active}
-              onClick={() => props.setCurrentPage(page)}
+              onClick={() => props.onChangePage(page)}
             >{page} |
             </span>
           )
