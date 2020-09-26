@@ -3,6 +3,8 @@ import style from './Dialogs.module.css';
 import Dialog from "./Dialog/Dialog";
 import Message from "./Message/Message";
 import {Field, reduxForm} from "redux-form";
+import {Textarea} from "../../FormControl/FormControl";
+import {required, maxLength} from "../../FormControl/validators";
 
 const getUsersList = (users) => users.map(({id, name}) => (
     <Dialog key={id} id={id} name={name}/>
@@ -14,10 +16,17 @@ const getMessagesList = (messages) => messages.map(({id, message}) => (
   )
 );
 
+const maxLength20 = maxLength(20);
+
 const AddMessageForm = (props) => {
   return (
     <form onSubmit={props.handleSubmit}>
-      <div><Field component="textarea" name="message" placeholder="Add message"/></div>
+      <Field
+        component={Textarea}
+        name="message"
+        placeholder="Add message"
+        label="Add message"
+        validate={[required, maxLength20]}/>
       <div>
         <button>Add post</button>
       </div>
@@ -51,7 +60,6 @@ const Dialogs = ({setMessage, dialogs, isAuth}) => {
     </div>
   )
 };
-
 
 
 export default Dialogs;
