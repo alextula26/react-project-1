@@ -29,6 +29,7 @@ const LoginForm = (props) => {
       <div>
         <button>Login</button>
       </div>
+      {props.error && <div style={{border: '1px solid red', color: 'red'}}>{props.error}</div>}
     </form>
   </>
 };

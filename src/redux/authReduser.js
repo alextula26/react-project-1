@@ -1,4 +1,5 @@
-import API from "../api/api";
+import API from '../api/api';
+import {stopSubmit} from 'redux-form';
 
 const SET_USER_DATA = 'SET_USER_DATA';
 const IS_LOADER = 'IS_LOADER';
@@ -44,6 +45,9 @@ export const login = (email, password, rememberMe) => (dispatch) => {
   API.login(email, password, rememberMe).then((responce) => {
     if (responce.data.resultCode === 0) {
       dispatch(getAuth());
+    } else {
+      const messages = responce.data.messages.length > 0 ? responce.data.messages[0] : 'Wrong error';
+      dispatch(stopSubmit('login', {_error: messages}));
     }
   });
 };
