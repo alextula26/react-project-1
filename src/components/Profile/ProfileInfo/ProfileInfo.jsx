@@ -1,12 +1,13 @@
 import React from 'react';
 import style from './ProfileInfo.module.css';
+import ProfileStatusWithHook from "./ProfileStatusWithHook";
 import ProfileStatus from "./ProfileStatus";
 
 const ProfileInfo = (props) => {
   return (
     <div className={style.profileInfo}>
       <div>
-        <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
+        <ProfileStatusWithHook status={props.status} updateStatus={props.updateStatus} />
       </div>
       <div className={style.descriptionInfo}>
         <div><img src={props.profile.photos.small} alt={props.profile.fullName}/></div>
