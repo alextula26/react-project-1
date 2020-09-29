@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './ProfileInfo.module.css';
 import ProfileStatusWithHook from "./ProfileStatusWithHook";
-import ProfileStatus from "./ProfileStatus";
+//import ProfileStatus from "./ProfileStatus";
 
 const ProfileInfo = (props) => {
   return (

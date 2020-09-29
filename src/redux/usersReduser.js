@@ -78,32 +78,30 @@ export const onChangePage = (page) => (dispatch) => {
   dispatch(setCurrentPage(page));
 };
 
-export const requestUsers = (currentPage, sizePage) => (dispatch) => {
+export const requestUsers = (currentPage, sizePage) => async (dispatch) => {
   dispatch(isLoaderChanged(true));
-  API.getUsers(currentPage, sizePage).then((data) => {
-    dispatch(setUsers(data.items));
-    dispatch(setUsersTotalCount(data.totalCount));
-    dispatch(isLoaderChanged(false));
-  });
+  const data = await API.getUsers(currentPage, sizePage);
+  dispatch(setUsers(data.items));
+  dispatch(setUsersTotalCount(data.totalCount));
+  dispatch(isLoaderChanged(false));
 };
 
-export const follow = (userId) => (dispatch) => {
+export const follow = (userId) => async (dispatch) => {
   dispatch(folowingInProgressChanged(true, userId));
-  API.setFollow(userId).then((data) => {
-    if (data.resultCode === 0) {
-      dispatch(followSuccess(userId));
-    }
-    dispatch(folowingInProgressChanged(false, userId));
-  });
+  const data = await API.setFollow(userId);
+  if (data.resultCode === 0) {
+    dispatch(followSuccess(userId));
+  }
+  dispatch(folowingInProgressChanged(false, userId));
 };
-export const unfollow = (userId) => (dispatch) => {
+
+export const unfollow = (userId) => async (dispatch) => {
   dispatch(folowingInProgressChanged(true, userId));
-  API.deleteFollow(userId).then((data) => {
-    if (data.resultCode === 0) {
-      dispatch(unfollowSuccess(userId));
-    }
-    dispatch(folowingInProgressChanged(false, userId));
-  });
+  const data = API.deleteFollow(userId);
+  if (data.resultCode === 0) {
+    dispatch(unfollowSuccess(userId));
+  }
+  dispatch(folowingInProgressChanged(false, userId));
 };
 
 export default usersReducer;
