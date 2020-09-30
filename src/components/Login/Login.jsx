@@ -3,25 +3,28 @@ import {Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 import {Field, reduxForm} from "redux-form";
 import {login} from "../../redux/authReduser";
-import {Input} from "../../FormControl/FormControl";
+import {InputComponent} from "../../FormControl/FormControl";
 import {required} from "../../FormControl/validators";
+import { Form, Button, Checkbox } from 'antd';
 
 const LoginForm = (props) => {
   return <>
-    <form onSubmit={props.handleSubmit}>
+    <Form
+      onSubmit={props.handleSubmit}
+      layout="vertical">
       <div><Field
-        component={Input}
+        component={InputComponent}
         name="email"
         placeholder={'Email'}
         validate={required}/>
       </div>
       <div><Field
-        component={Input}
+        component={InputComponent}
         name="password"
         placeholder={'password'}
         validate={required}/></div>
       <div><Field
-        component={Input}
+        component={InputComponent}
         name="rememberMe"
         type={'checkbox'}
         validate={required}/>Remember me
@@ -30,7 +33,7 @@ const LoginForm = (props) => {
         <button>Login</button>
       </div>
       {props.error && <div style={{border: '1px solid red', color: 'red'}}>{props.error}</div>}
-    </form>
+    </Form>
   </>
 };
 
