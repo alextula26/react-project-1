@@ -88,8 +88,8 @@ export const requestUsers = (currentPage, sizePage) => async (dispatch) => {
 
 export const follow = (userId) => async (dispatch) => {
   dispatch(folowingInProgressChanged(true, userId));
-  const data = await API.setFollow(userId);
-  if (data.resultCode === 0) {
+  const response = await API.setFollow(userId);
+  if (response.resultCode === 0) {
     dispatch(followSuccess(userId));
   }
   dispatch(folowingInProgressChanged(false, userId));
@@ -97,8 +97,8 @@ export const follow = (userId) => async (dispatch) => {
 
 export const unfollow = (userId) => async (dispatch) => {
   dispatch(folowingInProgressChanged(true, userId));
-  const data = API.deleteFollow(userId);
-  if (data.resultCode === 0) {
+  const response = await API.deleteFollow(userId);
+  if (response.resultCode === 0) {
     dispatch(unfollowSuccess(userId));
   }
   dispatch(folowingInProgressChanged(false, userId));

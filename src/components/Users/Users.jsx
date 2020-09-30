@@ -3,6 +3,8 @@ import style from './Users.module.css';
 import photoUrl from '../../assets/images/default.jpg'
 import _ from 'lodash';
 import {NavLink} from "react-router-dom";
+import {Button} from 'antd';
+import 'antd/dist/antd.css';
 
 const Users = (props) => {
   const countPages = Math.ceil(props.maxCountUsers / props.sizePage);
@@ -35,14 +37,16 @@ const Users = (props) => {
               <div>{user.status}</div>
               {
                 !user.followed
-                  ? <button
+                  ? <Button
+                    type="primary"
                     disabled={props.folowingInProgress.some((id) => id === user.id)}
                     onClick={() => props.follow(user.id)}
-                  >Follow</button>
-                  : <button
+                  >Follow</Button>
+                  : <Button
+                    type="primary"
                     disabled={props.folowingInProgress.some((id) => id === user.id)}
                     onClick={() => props.unfollow(user.id)}
-                  >unFollow</button>
+                  >unFollow</Button>
               }
             </div>
           )
