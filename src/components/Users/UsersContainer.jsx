@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {requestUsers, follow, unfollow, onChangePage} from "../../redux/usersReduser";
 import Users from "./Users";
 import Loader from "../commons/Loader/Loader";
-import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import withAuthRedirect from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 import {
   getCurrentPage, getFolowingInProgress, getIsLoader, getMaxCountUsers, getSizePage,

@@ -1,10 +1,10 @@
-import React from "react";
-import style from './FormControl.module.css'
-import {Form, Input} from 'antd';
+import React from 'react';
+import { Form, Input } from 'antd';
+import style from './FormControl.module.css';
 
 const isError = (toched, error) => toched && error;
 
-export const Textarea = ({input, meta, label, ...props}) => {
+export const Textarea = ({ input, meta, label, ...props }) => {
   const hasError = isError(meta.touched, meta.error);
   const classError = hasError ? ` ${style.error}` : '';
   return (
@@ -15,7 +15,7 @@ export const Textarea = ({input, meta, label, ...props}) => {
       </div>
       {hasError && <span className={style.error}>{meta.error}</span>}
     </div>
-  )
+  );
 };
 
 export const InputComponent = ({input, meta, label, ...props}) => {
@@ -28,5 +28,5 @@ export const InputComponent = ({input, meta, label, ...props}) => {
       </Form.Item>
       {hasError && <span className={style.error}>{meta.error}</span>}
     </div>
-  )
+  );
 };

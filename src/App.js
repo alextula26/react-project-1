@@ -1,15 +1,15 @@
 import React from 'react';
-import {Route, withRouter} from "react-router-dom";
-import {compose} from "redux";
-import {connect} from "react-redux";
-import {initializeApp} from "./redux/appReduser";
-import HeaderContainer from "./components/Header/HeaderContainer";
+import { Route, withRouter } from 'react-router-dom';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { initializeApp } from './redux/appReduser';
+import HeaderContainer from './components/Header/HeaderContainer';
 import Navbar from './components/Navbar/Navbar';
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import UsersContainer from "./components/Users/UsersContainer";
-import ProfileContainer from "./components/Profile/ProfileContainer";
-import Login from "./components/Login/Login";
-import Loader from "./components/commons/Loader/Loader";
+import DialogsContainer from './components/Dialogs/DialogsContainer';
+import UsersContainer from './components/Users/UsersContainer';
+import ProfileContainer from './components/Profile/ProfileContainer';
+import Login from './components/Login/Login';
+import Loader from './components/commons/Loader/Loader';
 import './App.css';
 
 class App extends React.Component {
@@ -19,7 +19,7 @@ class App extends React.Component {
 
   render() {
     if (!this.props.initialized) {
-      return <Loader/>
+      return <Loader/>;
     }
 
     return (
@@ -41,7 +41,4 @@ const mapStateToProps = (state) => ({
   initialized: state.app.initialized,
 });
 
-export default compose(
-  connect(mapStateToProps, {initializeApp}),
-  withRouter
-)(App);
+export default compose(connect(mapStateToProps, { initializeApp }), withRouter)(App);

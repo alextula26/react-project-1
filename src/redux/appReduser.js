@@ -1,4 +1,4 @@
-import {getAuth} from "./authReduser";
+import { getAuth } from './authReduser';
 
 const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS';
 
@@ -7,15 +7,14 @@ const initialState = {
 };
 
 const appReducer = (state = initialState, action) => {
-
   if (action.type === INITIALIZED_SUCCESS) {
-    return {...state, initialized: true};
+    return { ...state, initialized: true };
   }
 
   return state;
 };
 
-const initializedSucccess = () => ({type: INITIALIZED_SUCCESS});
+const initializedSucccess = () => ({ type: INITIALIZED_SUCCESS });
 
 export const initializeApp = () => (dispatch) => {
   const promise = dispatch(getAuth());

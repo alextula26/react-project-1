@@ -1,5 +1,5 @@
+import { stopSubmit } from 'redux-form';
 import API from '../api/api';
-import {stopSubmit} from 'redux-form';
 
 const SET_USER_DATA = 'SET_USER_DATA';
 
@@ -11,9 +11,8 @@ const initialState = {
 };
 
 const authReducer = (state = initialState, action) => {
-
   if (action.type === SET_USER_DATA) {
-    return {...state, ...action.payload};
+    return { ...state, ...action.payload };
   }
 
   return state;
@@ -21,7 +20,7 @@ const authReducer = (state = initialState, action) => {
 
 const setAuthUserData = (userId, email, login, isAuth) => ({
   type: SET_USER_DATA,
-  payload: {userId, email, login, isAuth}
+  payload: { userId, email, login, isAuth },
 });
 
 export const getAuth = () => async (dispatch) => {
@@ -37,7 +36,7 @@ export const login = (email, password, rememberMe) => async (dispatch) => {
     dispatch(getAuth());
   } else {
     const messages = responce.data.messages.length > 0 ? responce.data.messages[0] : 'Wrong error';
-    dispatch(stopSubmit('login', {_error: messages}));
+    dispatch(stopSubmit('login', { _error: messages }));
   }
 };
 

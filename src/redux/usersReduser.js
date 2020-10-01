@@ -1,4 +1,4 @@
-import API from "../api/api";
+import API from '../api/api';
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
@@ -22,7 +22,7 @@ const updateUserFollow = (state = initialState, userId, bool) => (
     ...state,
     users: state.users.map((user) => {
       if (user.id === userId) {
-        return {...user, followed: bool}
+        return { ...user, followed: bool };
       }
       return user;
     }),
@@ -30,7 +30,6 @@ const updateUserFollow = (state = initialState, userId, bool) => (
 );
 
 const usersReducer = (state = initialState, action) => {
-
   if (action.type === FOLLOW) {
     return updateUserFollow(state, action.userId, true);
   }
@@ -40,39 +39,44 @@ const usersReducer = (state = initialState, action) => {
   }
 
   if (action.type === SET_USERS) {
-    return {...state, users: action.users};
+    return { ...state, users: action.users };
   }
 
   if (action.type === SET_CURRENT_PAGE) {
-    return {...state, currentPage: action.page};
+    return { ...state, currentPage: action.page };
   }
 
   if (action.type === SET_USERS_TOTAL_COUNT) {
-    return {...state, maxCountUsers: action.count};
+    return { ...state, maxCountUsers: action.count };
   }
 
   if (action.type === IS_LOADER) {
-    return {...state, isLoader: action.isLoader};
+    return { ...state, isLoader: action.isLoader };
   }
+
   if (action.type === FOLLOWING_PROGRESS) {
     return {
       ...state,
       folowingInProgress: action.isFolowing
         ? [...state.folowingInProgress, action.userId]
-        : [state.folowingInProgress.filter((id) => id !== action.userId)]
+        : [state.folowingInProgress.filter((id) => id !== action.userId)],
     };
   }
 
   return state;
 };
 
-const followSuccess = (userId) => ({type: FOLLOW, userId});
-const unfollowSuccess = (userId) => ({type: UNFOLLOW, userId});
-const setUsers = (users) => ({type: SET_USERS, users});
-const setUsersTotalCount = (count) => ({type: SET_USERS_TOTAL_COUNT, count});
-const isLoaderChanged = (isLoader) => ({type: IS_LOADER, isLoader});
-const folowingInProgressChanged = (isFolowing, userId) => ({type: FOLLOWING_PROGRESS, isFolowing, userId});
-const setCurrentPage = (page) => ({type: SET_CURRENT_PAGE, page});
+const followSuccess = (userId) => ({ type: FOLLOW, userId });
+const unfollowSuccess = (userId) => ({ type: UNFOLLOW, userId });
+const setUsers = (users) => ({ type: SET_USERS, users });
+const setUsersTotalCount = (count) => ({ type: SET_USERS_TOTAL_COUNT, count });
+const isLoaderChanged = (isLoader) => ({ type: IS_LOADER, isLoader });
+const folowingInProgressChanged = (isFolowing, userId) => ({
+  type: FOLLOWING_PROGRESS,
+  isFolowing,
+  userId,
+});
+const setCurrentPage = (page) => ({ type: SET_CURRENT_PAGE, page });
 
 export const onChangePage = (page) => (dispatch) => {
   dispatch(setCurrentPage(page));

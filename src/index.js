@@ -1,11 +1,11 @@
 import React from 'react';
-import ReactDOM from "react-dom";
-import App from "./App";
-import './index.css';
-import store from "./redux/redux-store";
-import {BrowserRouter} from "react-router-dom";
+import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './redux/redux-store';
 import * as serviceWorker from './serviceWorker';
-import {Provider} from "react-redux";
+import App from './App';
+import './index.css';
 
 ReactDOM.render(
   <BrowserRouter>
