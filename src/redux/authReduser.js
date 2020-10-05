@@ -20,7 +20,9 @@ const authReducer = (state = initialState, action) => {
 
 const setAuthUserData = (userId, email, login, isAuth) => ({
   type: SET_USER_DATA,
-  payload: { userId, email, login, isAuth },
+  payload: {
+    userId, email, login, isAuth,
+  },
 });
 
 export const getAuth = () => async (dispatch) => {

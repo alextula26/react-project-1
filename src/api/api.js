@@ -28,7 +28,7 @@ const API = {
     instance.get(`profile/status/${userId}`)
   ),
   updateStatus: (status) => (
-    instance.put(`profile/status`, { status })
+    instance.put('profile/status', { status })
   ),
   login: (email, password, rememberMe = false) => (
     instance.post('/auth/login', { email, password, rememberMe })

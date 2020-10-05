@@ -8,9 +8,15 @@ const SET_STATUS = 'SET_STATUS';
 const initialState = {
   profile: null,
   posts: [
-    { id: 1, name: 'Alex', age: 30, message: 'How do you do?', like: 20 },
-    { id: 2, name: 'Inna', age: 35, message: 'Cool!!!', like: 30 },
-    { id: 3, name: 'Eva', age: 15, message: 'Way Cool!!!', like: 120 },
+    {
+      id: 1, name: 'Alex', age: 30, message: 'How do you do?', like: 20,
+    },
+    {
+      id: 2, name: 'Inna', age: 35, message: 'Cool!!!', like: 30,
+    },
+    {
+      id: 3, name: 'Eva', age: 15, message: 'Way Cool!!!', like: 120,
+    },
   ],
   status: '',
 };
@@ -49,7 +55,9 @@ const profileReducer = (state = initialState, action) => {
   return state;
 };
 
-export const setPost = (name, age, message) => ({ type: ADD_POST, name, age, message });
+export const setPost = (name, age, message) => ({
+  type: ADD_POST, name, age, message,
+});
 const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile });
 const setStatusProfile = (status) => ({ type: SET_STATUS, status });
 

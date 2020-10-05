@@ -4,7 +4,9 @@ import style from './FormControl.module.css';
 
 const isError = (toched, error) => toched && error;
 
-export const Textarea = ({ input, meta, label, ...props }) => {
+export const Textarea = ({
+  input, meta, label, ...props
+}) => {
   const hasError = isError(meta.touched, meta.error);
   const classError = hasError ? ` ${style.error}` : '';
   return (
@@ -18,7 +20,9 @@ export const Textarea = ({ input, meta, label, ...props }) => {
   );
 };
 
-export const InputComponent = ({input, meta, label, ...props}) => {
+export const InputComponent = ({
+  input, meta, label, ...props
+}) => {
   const hasError = isError(meta.touched, meta.error);
   const classError = hasError ? ` ${style.error}` : '';
   return (
