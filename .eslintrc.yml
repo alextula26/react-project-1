@@ -12,7 +12,6 @@ settings:
 env:
   node: true
   browser: true
-  es2021: true
   jest: true
 
 parser: babel-eslint
@@ -31,6 +30,7 @@ plugins:
   - jest
   - babel
 rules:
-  react/prop-types: 0
   no-console: 0
-  import/extensions: 0 # FIXME: remove when rule will be adjusted for new nodejs version
+  import/no-unresolved: 0
+  import/extensions: 0
+  react/prop-types: 0
