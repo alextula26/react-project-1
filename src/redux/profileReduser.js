@@ -4,6 +4,7 @@ import API from '../api/api';
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_STATUS = 'SET_STATUS';
+const SET_PHOTO = 'SET_PHOTO';
 
 const initialState = {
   profile: null,
@@ -52,6 +53,10 @@ const profileReducer = (state = initialState, action) => {
     return { ...state, status: action.status };
   }
 
+  if (action.type === SET_PHOTO) {
+    return { ...state, profile: { ...state.profile, photos: action.photos } };
+  }
+
   return state;
 };
 
@@ -60,6 +65,7 @@ export const setPost = (name, age, message) => ({
 });
 const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile });
 const setStatusProfile = (status) => ({ type: SET_STATUS, status });
+const savePhotoSuccess = (photos) => ({ type: SET_PHOTO, photos });
 
 export const getUser = (userId) => async (dispatch) => {
   const data = await API.getUser(userId);
@@ -75,6 +81,13 @@ export const updateStatus = (status) => async (dispatch) => {
   const responce = await API.updateStatus(status);
   if (responce.data.resultCode === 0) {
     dispatch(setStatusProfile(status));
+  }
+};
+
+export const savePhoto = (photo) => async (dispatch) => {
+  const responce = await API.savePhoto(photo);
+  if (responce.data.resultCode === 0) {
+    dispatch(savePhotoSuccess(responce.data.data.photos));
   }
 };
 

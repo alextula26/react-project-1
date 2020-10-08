@@ -36,6 +36,16 @@ const API = {
   logout: () => (
     instance.delete('/auth/login')
   ),
+  savePhoto: (photoFile) => {
+    const formData = new FormData();
+    formData.append('image', photoFile);
+    return instance.put('/profile/photo', formData, {
+      headers:
+        {
+          'Content-Type': 'multipart/form-data',
+        },
+    });
+  },
 };
 
 export default API;
