@@ -46,6 +46,9 @@ const API = {
         },
     });
   },
+  saveProfile: (profile) => (
+    instance.put('profile', profile)
+  ),
 };
 
 export default API;

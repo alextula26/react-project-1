@@ -1,6 +1,6 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import style from './Dialog.module.css';
-import {NavLink} from "react-router-dom";
 
 const Dialog = (props) => (
   <div className={style.dialog}>

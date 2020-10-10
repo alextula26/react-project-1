@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import { stopSubmit } from 'redux-form';
 import API from '../api/api';
 
 const ADD_POST = 'ADD-POST';
@@ -88,6 +89,18 @@ export const savePhoto = (photo) => async (dispatch) => {
   const responce = await API.savePhoto(photo);
   if (responce.data.resultCode === 0) {
     dispatch(savePhotoSuccess(responce.data.data.photos));
+  }
+};
+
+export const saveProfile = (profile) => async (dispatch, getState) => {
+  const { userId } = getState().auth;
+  const responce = await API.saveProfile(profile);
+  if (responce.data.resultCode === 0) {
+    dispatch(getUser(userId));
+  } else {
+    const messages = responce.data.messages.length > 0 ? responce.data.messages[0] : 'Wrong error';
+    dispatch(stopSubmit('editProfileDataForm', { contacts: { facebook: messages } }));
+    return Promise.reject(messages);
   }
 };
 
