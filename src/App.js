@@ -1,7 +1,10 @@
 import React from 'react';
-import { Route, withRouter } from 'react-router-dom';
+import {
+  Route, withRouter, BrowserRouter, Redirect, Switch,
+} from 'react-router-dom';
 import { compose } from 'redux';
-import { connect } from 'react-redux';
+import { connect, Provider } from 'react-redux';
+import store from './redux/redux-store';
 import { initializeApp } from './redux/appReduser';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Navbar from './components/Navbar/Navbar';
@@ -19,18 +22,22 @@ class App extends React.Component {
 
   render() {
     if (!this.props.initialized) {
-      return <Loader/>;
+      return <Loader />;
     }
 
     return (
       <div className="app-wrapper">
-        <HeaderContainer/>
-        <Navbar/>
+        <HeaderContainer />
+        <Navbar />
         <div className="content">
-          <Route path='/dialogs' render={() => <DialogsContainer/>}/>
-          <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
-          <Route path='/users' render={() => <UsersContainer/>}/>
-          <Route path='/login' render={() => <Login/>}/>
+          <Switch>
+            <Route exact path='/' render={() => <Redirect to={'profile'} />} />
+            <Route path='/dialogs' render={() => <DialogsContainer />} />
+            <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
+            <Route path='/users' render={() => <UsersContainer />} />
+            <Route path='/login' render={() => <Login />} />
+            <Route path='*' render={() => <div>404 Filenot found</div>} />
+          </Switch>
         </div>
       </div>
     );
@@ -41,4 +48,14 @@ const mapStateToProps = (state) => ({
   initialized: state.app.initialized,
 });
 
-export default compose(connect(mapStateToProps, { initializeApp }), withRouter)(App);
+const AppContainer = compose(connect(mapStateToProps, { initializeApp }), withRouter)(App);
+
+const MyApp = () => (
+  <BrowserRouter>
+    <Provider store={store}>
+      <AppContainer key="app" />
+    </Provider>
+  </BrowserRouter>
+);
+
+export default MyApp;
